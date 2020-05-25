@@ -25,6 +25,8 @@ Vue.prototype.$http = base;
 Vue.config.productionTip = false;
 
 
+
+
 const routes = [
   {
       path: "/",
@@ -36,6 +38,12 @@ const routes = [
     name: "homeEng",
     component: () => import("../src/views/HomeComponentEng.vue")
 },
+
+  {
+    path: "/register",
+    name: "register",
+    component: () => import("../src/views/register.vue")
+  }
 ];
 
 const router = new VueRouter({ 
@@ -43,6 +51,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL, 
   routes
 });
+
 
 
   new Vue({
