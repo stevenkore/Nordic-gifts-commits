@@ -26,6 +26,7 @@ Vue.config.productionTip = false;
 
 
 import IndexComponent from './components/IndexComponent.vue';
+import EditComponent from './components/EditComponent.vue';
 
 
 const routes = [
@@ -43,6 +44,14 @@ const routes = [
       name: 'posts',
       path: '/tellijate_andmed',
       component: IndexComponent,
+      meta: {
+        requiresAuth: true
+      }
+  },
+  {
+      name: 'edit',
+      path: '/edit/:id',
+      component: EditComponent,
       meta: {
         requiresAuth: true
       }
