@@ -25,6 +25,9 @@ Vue.prototype.$http = base;
 Vue.config.productionTip = false;
 
 
+import IndexComponent from './components/IndexComponent.vue';
+
+
 const routes = [
   {
       path: "/",
@@ -36,7 +39,14 @@ const routes = [
     name: "homeEng",
     component: () => import("../src/views/HomeComponentEng.vue")
 },
-
+  {
+      name: 'posts',
+      path: '/tellijate_andmed',
+      component: IndexComponent,
+      meta: {
+        requiresAuth: true
+      }
+  },
   {
     path: "/login",
     name: "login",
@@ -55,7 +65,19 @@ const router = new VueRouter({
   routes
 });
 
-
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+      if (localStorage.getItem("jwt") == null) {
+        next({
+          path: "/"
+        });
+      } else {
+        next();
+      }
+    } else {
+      next();
+    }
+  });
 
   new Vue({
     router,
