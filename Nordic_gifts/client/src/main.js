@@ -25,13 +25,17 @@ Vue.prototype.$http = base;
 Vue.config.productionTip = false;
 
 
-
 const routes = [
   {
       path: "/",
       name: "home",
       component: () => import("../src/views/HomeComponent.vue")
-  }
+  },
+  {
+    path: "/eng",
+    name: "homeEng",
+    component: () => import("../src/views/HomeComponentEng.vue")
+},
 ];
 
 const router = new VueRouter({ 
