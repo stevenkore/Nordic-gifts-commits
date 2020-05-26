@@ -23,6 +23,9 @@ app.use(morgan("dev"));
 
 app.use('/posts', postRoute);
 
+const userRoutes = require("./route/user");
+app.use("/user", userRoutes);
+
 app.listen(PORT, function(){
   console.log('Server is running on Port:',PORT);
 });
