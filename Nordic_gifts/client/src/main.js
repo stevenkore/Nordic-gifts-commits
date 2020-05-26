@@ -37,7 +37,17 @@ const routes = [
     path: "/eng",
     name: "homeEng",
     component: () => import("../src/views/HomeComponentEng.vue")
-}
+},
+  {
+    path: "/login",
+    name: "login",
+    component: () => import("../src/views/login.vue")
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: () => import("../src/views/register.vue")
+  }
 ];
 
 const router = new VueRouter({ 
@@ -46,7 +56,19 @@ const router = new VueRouter({
   routes
 });
 
-
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+      if (localStorage.getItem("jwt") == null) {
+        next({
+          path: "/"
+        });
+      } else {
+        next();
+      }
+    } else {
+      next();
+    }
+  });
 
   new Vue({
     router,
