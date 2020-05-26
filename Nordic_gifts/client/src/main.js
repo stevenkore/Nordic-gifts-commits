@@ -25,6 +25,7 @@ Vue.prototype.$http = base;
 Vue.config.productionTip = false;
 
 
+import IndexComponent from './components/IndexComponent.vue';
 
 
 const routes = [
@@ -38,6 +39,14 @@ const routes = [
     name: "homeEng",
     component: () => import("../src/views/HomeComponentEng.vue")
 },
+  {
+      name: 'posts',
+      path: '/tellijate_andmed',
+      component: IndexComponent,
+      meta: {
+        requiresAuth: true
+      }
+  },
   {
     path: "/login",
     name: "login",
